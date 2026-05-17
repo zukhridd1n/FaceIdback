@@ -1,0 +1,16 @@
+services:
+  faceid-api:
+    build: .
+    container_name: faceid-api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////data/faceid.db
+      UPLOAD_DIR: /data/uploads
+      JWT_SECRET: change-this-secret-in-production
+    volumes:
+      - faceid-data:/data
+    restart: unless-stopped
+
+volumes:
+  faceid-data:
